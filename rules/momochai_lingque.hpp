@@ -776,83 +776,83 @@ namespace momochai_lingque {
     }
 
     const std::vector<fan> list_of_fans = {
-        fan("ÌìºÍ", {category::occasional, 64, 3, 1}, criteria::heavenly_hand),
-        fan("µØºÍ", {category::occasional, 64, 3, 1}, criteria::earthly_hand),
-        fan("ÁëÉÏ¿ª»¨", {category::occasional, 8, 2, 1}, criteria::out_with_replacement_tile),
-        fan("º£µ×ÀÌÔÂ", {category::occasional, 8, 2, 1}, criteria::last_tile_draw),
-        fan("ºÓµ×ÀÌÓã", {category::occasional, 8, 2, 1}, criteria::last_tile_claim),
-        fan("ÇÀ¸Ü", {category::occasional, 8, 2, 1}, criteria::robbing_the_kong),
-        fan("×ÔÃþ", {category::occasional, 2, 1, 1}, criteria::self_drawn),
-        fan("Æß¶Ô", {category::special, 8, 3, 1, 1}, criteria::seven_pairs),
-        fan("È«²»¿¿", {category::special, 8, 3, 1, 1}, criteria::honours_and_knitted_tiles),
-        fan("Ê®ÈýçÛ", {category::special, 48, 3, 1, 1}, criteria::thirteen_orphans),
-        fan("ÃÅÇ°Çå", {category::concealed, 2, 1, 1}, criteria::concealed_hand),
-        fan("ËÄ¸Ü", {category::triplets, 88, 5}, criteria::four_kongs),
-        fan("Èý¸Ü", {category::triplets, 32, 4}, criteria::three_kongs),
-        fan("Ë«¸Ü", {category::triplets, 8, 2}, criteria::two_kongs),
-        fan("¸Ü", {category::triplets, 4, 1}, criteria::kong),
-        fan("ËÄ°µ¿Ì", {category::triplets, 48, 3}, criteria::four_concealed_triplets),
-        fan("Èý°µ¿Ì", {category::triplets, 16, 3}, criteria::three_concealed_triplets),
-        fan("Ë«°µ¿Ì", {category::triplets, 4, 2}, criteria::two_concealed_triplets),
-        fan("°µ¿Ì", {category::triplets, 2, 1}, criteria::concealed_triplet),
-        fan("¶Ô¶ÔºÍ", {category::triplets, 8, 3}, criteria::all_triplets),
-        fan("ËÄ¹é", {category::triplets, 4, 1}, criteria::tile_hog),
-        fan("´óÆßÐÇ", {category::honours, 112, 5, 1, 1}, criteria::big_seven_honours),
-        fan("×ÖÒ»É«", {category::honours, 32, 5, 1}, criteria::all_honours),
-        fan("´óËÄÏ²", {category::honours, 88, 5}, criteria::big_four_winds),
-        fan("Ð¡ËÄÏ²", {category::honours, 48, 5}, criteria::little_four_winds),
-        fan("ËÄÏ²¶Ô", {category::honours, 24, 3, 1}, criteria::four_wind_pairs),
-        fan("´óÈýÔª", {category::honours, 48, 4}, criteria::big_three_dragons),
-        fan("Ð¡ÈýÔª", {category::honours, 24, 4}, criteria::little_three_dragons),
-        fan("ÈýÔª¶Ô", {category::honours, 12, 3, 1}, criteria::three_dragon_pairs),
-        fan("·¬ÅÆ ÃÅ·çÅÆ", {category::honours, 2, 1, 1}, criteria::seat_wind),
-        fan("·¬ÅÆ ÖÐ", {category::honours, 2, 1, 1}, criteria::red_dragon),
-        fan("·¬ÅÆ °l", {category::honours, 2, 1, 1}, criteria::green_dragon),
-        fan("·¬ÅÆ °×", {category::honours, 2, 1, 1}, criteria::white_dragon),
-        fan("¿Í·ç¿Ì", {category::honours, 2, 1, 1}, criteria::wind_triplet),
-        fan("ÇåçÛ¾Å", {category::terminals, 88, 5}, criteria::all_terminals),
-        fan("»ìçÛ¾Å", {category::terminals, 16, 3, 1}, criteria::all_terminals_and_honours),
-        fan("Çå´øçÛ", {category::terminals, 12, 3}, criteria::pure_outside_hand),
-        fan("»ì´øçÛ", {category::terminals, 4, 3}, criteria::mixed_outside_hand),
-        fan("çÛ¾Å¿Ì", {category::terminals, 2, 1}, criteria::terminal_triplet),
-        fan("¾ÅÁ«±¦µÆ", {category::suits, 112, 5}, criteria::nine_gates),
-        fan("Á¬Æß¶Ô", {category::suits, 88, 5, 1, 1}, criteria::seven_shifted_pairs),
-        fan("ÇåÒ»É«", {category::suits, 24, 4, 1}, criteria::full_flush),
-        fan("»ìÒ»É«", {category::suits, 8, 3, 1}, criteria::half_flush),
-        fan("È±Ò»ÃÅ", {category::suits, 2, 1, 1}, criteria::two_suits),
-        fan("ÎåÃÅÆë", {category::suits, 4, 2}, criteria::all_types),
-        fan("¶þÊý", {category::numbers, 48, 5}, criteria::two_numbers),
-        fan("Èý¾Û", {category::numbers, 24, 3, 1}, criteria::three_consecutive_numbers),
-        fan("ËÄ¾Û", {category::numbers, 8, 3, 1}, criteria::four_consecutive_numbers),
-        fan("¾ÅÊý¹áÍ¨", {category::numbers, 12, 3}, criteria::nine_numbers),
-        fan("¾µÊý", {category::overall_correlation, 12, 3}, criteria::reflected_hand),
-        fan("¾µÊý¶Ô", {category::overall_correlation, 24, 3, 1, 1}, criteria::reflected_pairs),
-        fan("ËÄÍ¬Ë³", {category::identical_melds, 112, 6}, criteria::quadruple_sequence),
-        fan("ÈýÍ¬Ë³", {category::identical_melds, 32, 4}, criteria::triple_sequence),
-        fan("¶þ°ã¸ß", {category::identical_melds, 24, 3}, criteria::two_double_sequences),
-        fan("Ò»°ã¸ß", {category::identical_melds, 4, 2}, criteria::double_sequence),
-        fan("ÈýÍ¬¿Ì", {category::partial_correlation, 24, 3}, criteria::mixed_triple_triplet),
-        fan("Ë«Í¬¿Ì", {category::partial_correlation, 4, 2}, criteria::mixed_double_triplet),
-        fan("ÈýÉ«Í¬Ë³", {category::partial_correlation, 8, 3}, criteria::mixed_triple_sequence),
-        fan("Ï²Ïà·ê", {category::partial_correlation, 2, 1}, criteria::mixed_double_sequence),
-        fan("ÈýÍ¬¶þ¶Ô", {category::partial_correlation, 24, 3, 1, 1}, criteria::two_triple_pairs),
-        fan("¾µÍ¬", {category::partial_correlation, 4, 3}, criteria::mirrored_hand),
-        fan("¾µÍ¬¶Ô", {category::partial_correlation, 12, 3, 1, 1}, criteria::three_mirrored_pairs),
-        fan("ËÄÁ¬¿Ì", {category::partial_correlation, 48, 4}, criteria::four_shifted_triplets),
-        fan("ÈýÁ¬¿Ì", {category::partial_correlation, 24, 3}, criteria::three_shifted_triplets),
-        fan("ËÄ²½¸ß", {category::partial_correlation, 48, 4}, criteria::four_shifted_sequences),
-        fan("Èý²½¸ß", {category::partial_correlation, 16, 3}, criteria::three_shifted_sequences),
-        fan("ËÄÁ¬»·", {category::partial_correlation, 32, 4}, criteria::four_chained_sequences),
-        fan("ÈýÁ¬»·", {category::partial_correlation, 8, 3}, criteria::three_chained_sequences),
-        fan("Ò»Æø¹áÍ¨", {category::partial_correlation, 8, 3}, criteria::pure_straight),
-        fan("Ë«Áú»á", {category::partial_correlation, 8, 3}, criteria::two_short_straights),
-        fan("Á¬Áù", {category::partial_correlation, 2, 1}, criteria::short_straight),
-        fan("ÀÏÉÙ¸±", {category::partial_correlation, 2, 1}, criteria::two_terminal_sequences),
-        fan("ÈýÉ«Á¬¿Ì", {category::partial_correlation, 8, 2}, criteria::mixed_shifted_triplets),
-        fan("ÈýÉ«²½¸ß", {category::partial_correlation, 4, 2}, criteria::mixed_shifted_sequences),
-        fan("ÈýÉ«Á¬»·", {category::partial_correlation, 4, 2}, criteria::mixed_chained_sequences),
-        fan("ÈýÉ«¹áÍ¨", {category::partial_correlation, 8, 2}, criteria::mixed_straight),
-        fan("¾µÁú»á", {category::partial_correlation, 12, 3}, criteria::mirrored_short_straights)
+        fan("å¤©å’Œ", {category::occasional, 64, 3, 1}, criteria::heavenly_hand),
+        fan("åœ°å’Œ", {category::occasional, 64, 3, 1}, criteria::earthly_hand),
+        fan("å²­ä¸Šå¼€èŠ±", {category::occasional, 8, 2, 1}, criteria::out_with_replacement_tile),
+        fan("æµ·åº•æžæœˆ", {category::occasional, 8, 2, 1}, criteria::last_tile_draw),
+        fan("æ²³åº•æžé±¼", {category::occasional, 8, 2, 1}, criteria::last_tile_claim),
+        fan("æŠ¢æ ", {category::occasional, 8, 2, 1}, criteria::robbing_the_kong),
+        fan("è‡ªæ‘¸", {category::occasional, 2, 1, 1}, criteria::self_drawn),
+        fan("ä¸ƒå¯¹", {category::special, 8, 3, 1, 1}, criteria::seven_pairs),
+        fan("å…¨ä¸é ", {category::special, 8, 3, 1, 1}, criteria::honours_and_knitted_tiles),
+        fan("åä¸‰å¹º", {category::special, 48, 3, 1, 1}, criteria::thirteen_orphans),
+        fan("é—¨å‰æ¸…", {category::concealed, 2, 1, 1}, criteria::concealed_hand),
+        fan("å››æ ", {category::triplets, 88, 5}, criteria::four_kongs),
+        fan("ä¸‰æ ", {category::triplets, 32, 4}, criteria::three_kongs),
+        fan("åŒæ ", {category::triplets, 8, 2}, criteria::two_kongs),
+        fan("æ ", {category::triplets, 4, 1}, criteria::kong),
+        fan("å››æš—åˆ»", {category::triplets, 48, 3}, criteria::four_concealed_triplets),
+        fan("ä¸‰æš—åˆ»", {category::triplets, 16, 3}, criteria::three_concealed_triplets),
+        fan("åŒæš—åˆ»", {category::triplets, 4, 2}, criteria::two_concealed_triplets),
+        fan("æš—åˆ»", {category::triplets, 2, 1}, criteria::concealed_triplet),
+        fan("å¯¹å¯¹å’Œ", {category::triplets, 8, 3}, criteria::all_triplets),
+        fan("å››å½’", {category::triplets, 4, 1}, criteria::tile_hog),
+        fan("å¤§ä¸ƒæ˜Ÿ", {category::honours, 112, 5, 1, 1}, criteria::big_seven_honours),
+        fan("å­—ä¸€è‰²", {category::honours, 32, 5, 1}, criteria::all_honours),
+        fan("å¤§å››å–œ", {category::honours, 88, 5}, criteria::big_four_winds),
+        fan("å°å››å–œ", {category::honours, 48, 5}, criteria::little_four_winds),
+        fan("å››å–œå¯¹", {category::honours, 24, 3, 1}, criteria::four_wind_pairs),
+        fan("å¤§ä¸‰å…ƒ", {category::honours, 48, 4}, criteria::big_three_dragons),
+        fan("å°ä¸‰å…ƒ", {category::honours, 24, 4}, criteria::little_three_dragons),
+        fan("ä¸‰å…ƒå¯¹", {category::honours, 12, 3, 1}, criteria::three_dragon_pairs),
+        fan("ç•ªç‰Œ é—¨é£Žç‰Œ", {category::honours, 2, 1, 1}, criteria::seat_wind),
+        fan("ç•ªç‰Œ ä¸­", {category::honours, 2, 1, 1}, criteria::red_dragon),
+        fan("ç•ªç‰Œ ç™¼", {category::honours, 2, 1, 1}, criteria::green_dragon),
+        fan("ç•ªç‰Œ ç™½", {category::honours, 2, 1, 1}, criteria::white_dragon),
+        fan("å®¢é£Žåˆ»", {category::honours, 2, 1, 1}, criteria::wind_triplet),
+        fan("æ¸…å¹ºä¹", {category::terminals, 88, 5}, criteria::all_terminals),
+        fan("æ··å¹ºä¹", {category::terminals, 16, 3, 1}, criteria::all_terminals_and_honours),
+        fan("æ¸…å¸¦å¹º", {category::terminals, 12, 3}, criteria::pure_outside_hand),
+        fan("æ··å¸¦å¹º", {category::terminals, 4, 3}, criteria::mixed_outside_hand),
+        fan("å¹ºä¹åˆ»", {category::terminals, 2, 1}, criteria::terminal_triplet),
+        fan("ä¹èŽ²å®ç¯", {category::suits, 112, 5}, criteria::nine_gates),
+        fan("è¿žä¸ƒå¯¹", {category::suits, 88, 5, 1, 1}, criteria::seven_shifted_pairs),
+        fan("æ¸…ä¸€è‰²", {category::suits, 24, 4, 1}, criteria::full_flush),
+        fan("æ··ä¸€è‰²", {category::suits, 8, 3, 1}, criteria::half_flush),
+        fan("ç¼ºä¸€é—¨", {category::suits, 2, 1, 1}, criteria::two_suits),
+        fan("äº”é—¨é½", {category::suits, 4, 2}, criteria::all_types),
+        fan("äºŒæ•°", {category::numbers, 48, 5}, criteria::two_numbers),
+        fan("ä¸‰èš", {category::numbers, 24, 3, 1}, criteria::three_consecutive_numbers),
+        fan("å››èš", {category::numbers, 8, 3, 1}, criteria::four_consecutive_numbers),
+        fan("ä¹æ•°è´¯é€š", {category::numbers, 12, 3}, criteria::nine_numbers),
+        fan("é•œæ•°", {category::overall_correlation, 12, 3}, criteria::reflected_hand),
+        fan("é•œæ•°å¯¹", {category::overall_correlation, 24, 3, 1, 1}, criteria::reflected_pairs),
+        fan("å››åŒé¡º", {category::identical_melds, 112, 6}, criteria::quadruple_sequence),
+        fan("ä¸‰åŒé¡º", {category::identical_melds, 32, 4}, criteria::triple_sequence),
+        fan("äºŒèˆ¬é«˜", {category::identical_melds, 24, 3}, criteria::two_double_sequences),
+        fan("ä¸€èˆ¬é«˜", {category::identical_melds, 4, 2}, criteria::double_sequence),
+        fan("ä¸‰åŒåˆ»", {category::partial_correlation, 24, 3}, criteria::mixed_triple_triplet),
+        fan("åŒåŒåˆ»", {category::partial_correlation, 4, 2}, criteria::mixed_double_triplet),
+        fan("ä¸‰è‰²åŒé¡º", {category::partial_correlation, 8, 3}, criteria::mixed_triple_sequence),
+        fan("å–œç›¸é€¢", {category::partial_correlation, 2, 1}, criteria::mixed_double_sequence),
+        fan("ä¸‰åŒäºŒå¯¹", {category::partial_correlation, 24, 3, 1, 1}, criteria::two_triple_pairs),
+        fan("é•œåŒ", {category::partial_correlation, 4, 3}, criteria::mirrored_hand),
+        fan("é•œåŒå¯¹", {category::partial_correlation, 12, 3, 1, 1}, criteria::three_mirrored_pairs),
+        fan("å››è¿žåˆ»", {category::partial_correlation, 48, 4}, criteria::four_shifted_triplets),
+        fan("ä¸‰è¿žåˆ»", {category::partial_correlation, 24, 3}, criteria::three_shifted_triplets),
+        fan("å››æ­¥é«˜", {category::partial_correlation, 48, 4}, criteria::four_shifted_sequences),
+        fan("ä¸‰æ­¥é«˜", {category::partial_correlation, 16, 3}, criteria::three_shifted_sequences),
+        fan("å››è¿žçŽ¯", {category::partial_correlation, 32, 4}, criteria::four_chained_sequences),
+        fan("ä¸‰è¿žçŽ¯", {category::partial_correlation, 8, 3}, criteria::three_chained_sequences),
+        fan("ä¸€æ°”è´¯é€š", {category::partial_correlation, 8, 3}, criteria::pure_straight),
+        fan("åŒé¾™ä¼š", {category::partial_correlation, 8, 3}, criteria::two_short_straights),
+        fan("è¿žå…­", {category::partial_correlation, 2, 1}, criteria::short_straight),
+        fan("è€å°‘å‰¯", {category::partial_correlation, 2, 1}, criteria::two_terminal_sequences),
+        fan("ä¸‰è‰²è¿žåˆ»", {category::partial_correlation, 8, 2}, criteria::mixed_shifted_triplets),
+        fan("ä¸‰è‰²æ­¥é«˜", {category::partial_correlation, 4, 2}, criteria::mixed_shifted_sequences),
+        fan("ä¸‰è‰²è¿žçŽ¯", {category::partial_correlation, 4, 2}, criteria::mixed_chained_sequences),
+        fan("ä¸‰è‰²è´¯é€š", {category::partial_correlation, 8, 2}, criteria::mixed_straight),
+        fan("é•œé¾™ä¼š", {category::partial_correlation, 12, 3}, criteria::mirrored_short_straights)
     };
 
     enum indices {
@@ -1061,24 +1061,32 @@ j1:     if (fan_results[concealed_hand]) ++multiplier;
             fans = r.second.first;
             chosen_for_mult = r.second.second;
         }
-        auto extend = [](const std::string& s, int32_t length) {
-            if (length > 0)
-                return s + std::string(length - s.size(), ' ');
-            return std::string(-length - s.size(), ' ') + s;
+        auto size_in_console = [](const std::string& s) {
+            std::size_t size = 0;
+            for (unsigned char c : s) {
+                if ((c & 0b11000000) != 0b10000000)
+                    size += (1 + (c >= 0b10000000));
+            }
+            return size;
         };
-        if (res_mult == 0u) return {true, 0u, std::string(34, '=') + '\n' + extend("ÎÞ·¬ºÍ", 20) + "  0 ¡Á 0 =    0\n"};
+        auto extend = [&size_in_console](const std::string& s, int32_t length) {
+            if (length > 0)
+                return s + std::string(length - size_in_console(s), ' ');
+            return std::string(-length - size_in_console(s), ' ') + s;
+        };
+        if (res_mult == 0u) return {true, 0u, std::string(34, '=') + '\n' + extend("æ— ç•ªå’Œ", 20) + "  0 Ã— 0 =    0\n"};
         std::stringstream ss;
         ss << std::string(34, '-') << '\n';
         for (uint8_t i = 0; i < fan_count; ++i)
             if (fans[i]) {
-                ss << extend(list_of_fans[i].name, 13) << ((fans[i] == 1 || i == red_dragon || i == green_dragon || i == white_dragon || i == seat_wind) ? "  " : "¡Á" + std::to_string((int)fans[i])) << extend(std::to_string(fans[i] * list_of_fans[i].tag.base_point), -8);
+                ss << extend(list_of_fans[i].name, 13) << ((fans[i] == 1 || i == red_dragon || i == green_dragon || i == white_dragon || i == seat_wind) ? "  " : "Ã—" + std::to_string((int)fans[i])) << extend(std::to_string(fans[i] * list_of_fans[i].tag.base_point), -8);
                 if (chosen_for_mult[i])
-                    ss << " ¡Á " << (int)list_of_fans[i].tag.multiplier;
+                    ss << " Ã— " << (int)list_of_fans[i].tag.multiplier;
                 ss << '\n';
             }
-        if (fan_results[concealed_hand][0]) ss << std::string(34, '-') << '\n' << extend("ÃÅÇåÌø·­", 23) << " + 1" << '\n';
+        if (fan_results[concealed_hand][0]) ss << std::string(34, '-') << '\n' << extend("é—¨æ¸…è·³ç¿»", 23) << " + 1" << '\n';
         ss << std::string(34, '=') << '\n';
-        ss << extend("×Ü¼Æ", 20) << extend(std::to_string(res_bp), -3) << " ¡Á " << (int)res_mult << " = " << extend(std::to_string(res_bp * res_mult), -4) << '\n';
+        ss << extend("æ€»è®¡", 20) << extend(std::to_string(res_bp), -3) << " Ã— " << (int)res_mult << " = " << extend(std::to_string(res_bp * res_mult), -4) << '\n';
         return {true, static_cast<uint16_t>(res_bp * res_mult), ss.str()};
     };
 

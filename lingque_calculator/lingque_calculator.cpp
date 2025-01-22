@@ -26,23 +26,26 @@ bool calculate(const std::string& s0 = "") {
         }
     });
     if (!h.is_valid()) {
-        std::cout << "- ÎÞÐ§ÊäÈë.\n" << std::endl;
+        std::cout << "- æ— æ•ˆè¾“å…¥.\n" << std::endl;
         return true;
     }
     auto res = momochai_lingque::calculator(h);
     if (!res)
-        std::cout << "- ´ËÅÆ²»ÄÜºÍÅÆ.\n";
+        std::cout << "- æ­¤ç‰Œä¸èƒ½å’Œç‰Œ.\n";
     else std::cout << res.tag();
     std::cout << std::endl;
     return true;
 }
 
 int main() {
-    std::cout << "[ÁéÈ¸ µÚ 27 °æ ¼ÆËãÆ÷]\n\n";
-    std::cout << "ÃÅ·ç:  ! - –|,    @ - ÄÏ,    # - Î÷,    $ - ±±\n";
-    std::cout << "ºÍÅÆ:  % - ×ÔÃþ,  ^ - ÁëÉÏ¿ª»¨/ÇÀ¸Ü,  & - º£µ×/ºÓµ×,  * - ÌìºÍ/µØºÍ\n";
-    std::cout << "¸±Â¶: [] - °µ¸Ü, () - ÆäÓà\n\n";
-    std::cout << "Àý: [FFFF](123m)456p789sWW#%\n";
+#ifdef _WIN32
+    setlocale(LC_ALL, "zh_CN.UTF-8");
+#endif
+    std::cout << "[çµé›€ ç¬¬ 27 ç‰ˆ è®¡ç®—å™¨]\n\n";
+    std::cout << "é—¨é£Ž:  ! - æ±,    @ - å—,    # - è¥¿,    $ - åŒ—\n";
+    std::cout << "å’Œç‰Œ:  % - è‡ªæ‘¸,  ^ - å²­ä¸Šå¼€èŠ±/æŠ¢æ ,  & - æµ·åº•/æ²³åº•,  * - å¤©å’Œ/åœ°å’Œ\n";
+    std::cout << "å‰¯éœ²: [] - æš—æ , () - å…¶ä½™\n\n";
+    std::cout << "ä¾‹: [FFFF](123m)456p789sWW#%\n";
     calculate("[FFFF](123m)456p789sWW#%");
     while (calculate());
     return 0;

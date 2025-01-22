@@ -54,23 +54,26 @@ bool calculate(const std::string& s0 = "") {
         }
     });
     if (!h.is_valid()) {
-        std::cout << "- ÎÞÐ§ÊäÈë.\n" << std::endl;
+        std::cout << "- æ— æ•ˆè¾“å…¥.\n" << std::endl;
         return true;
     }
     auto res = mcr_mahjong::calculator(h);
     if (!res)
-        std::cout << "- ´ËÅÆ²»ÄÜºÍÅÆ.\n";
+        std::cout << "- æ­¤ç‰Œä¸èƒ½å’Œç‰Œ.\n";
     else std::cout << res.tag();
     std::cout << std::endl;
     return true;
 }
 
 int main() {
-    std::cout << "[¹ú±êÂéÈ¸ 1998 °æ ¼ÆËãÆ÷]\n\n";
-    std::cout << "È¦ÃÅ·ç:  ! - –|,    @ - ÄÏ,    # - Î÷,    $ - ±±\n";
-    std::cout << "  ºÍÅÆ:  % - ×ÔÃþ,  ^ - ÁëÉÏ¿ª»¨/ÇÀ¸Ü,  & - º£µ×/ºÓµ×,  * - ¾øÕÅ\n";
-    std::cout << "  ¸±Â¶: [] - °µ¸Ü, () - ÆäÓà\n\n";
-    std::cout << "Àý: [WWWW](123m)456p789sFF#@%\n";
+#ifdef _WIN32
+    setlocale(LC_ALL, "zh_CN.UTF-8");
+#endif
+    std::cout << "[å›½æ ‡éº»é›€ 1998 ç‰ˆ è®¡ç®—å™¨]\n\n";
+    std::cout << "åœˆé—¨é£Ž:  ! - æ±,    @ - å—,    # - è¥¿,    $ - åŒ—\n";
+    std::cout << "  å’Œç‰Œ:  % - è‡ªæ‘¸,  ^ - å²­ä¸Šå¼€èŠ±/æŠ¢æ ,  & - æµ·åº•/æ²³åº•,  * - ç»å¼ \n";
+    std::cout << "  å‰¯éœ²: [] - æš—æ , () - å…¶ä½™\n\n";
+    std::cout << "ä¾‹: [WWWW](123m)456p789sFF#@%\n";
     calculate("[WWWW](123m)456p789sFF#@%");
     while (calculate());
     return 0;

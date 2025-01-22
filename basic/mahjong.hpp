@@ -618,6 +618,10 @@ namespace mahjong {
             tile_counter remaining_counter;
 
         public:
+            const hand& original_hand() const {
+                return h;
+            }
+
             const tile_counter& counter(bool include_open_melds = true) const {
                 if (remaining_counter) return remaining_counter;
                 return h.counter(include_open_melds);
@@ -702,7 +706,7 @@ namespace mahjong {
                 for (uint8_t i = (index + 1) >> 1; i < 34; ++i) {
                     tile_t ti = tile_set::all_tiles[i];
                     if (counter.count(ti) >= 3)
-                        queue.push({decomposition(front, meld(ti, meld_type::triplet, (mahjong::win_type(this->win_type)(mahjong::win_type::self_drawn) || ti != win_tile || counter.count(ti) == 4), false)), i * 2});
+                        queue.push({decomposition(front, meld(ti, meld_type::triplet, (mahjong::win_type(this->win_type)(mahjong::win_type::self_drawn) || ti != win_tile || total_counter.count(ti) == 4), false)), i * 2});
                 }
                 for (uint8_t i = index >> 1; i < 27; ++i) {
                     tile_t ti = tile_set::numbered_tiles[i];

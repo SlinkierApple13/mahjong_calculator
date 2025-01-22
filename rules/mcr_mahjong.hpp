@@ -753,87 +753,87 @@ namespace mcr_mahjong {
     }
 
     const std::vector<fan> fans = {
-        fan("´óËÄÏ²", {88}, criteria::big_four_winds),
-        fan("´óÈýÔª", {88}, criteria::big_three_dragons),
-        fan("ÂÌÒ»É«", {88, 1}, criteria::all_green),
-        fan("¾ÅÁ«±¦µÆ", {88}, criteria::nine_gates),
-        fan("ËÄ¸Ü", {88}, criteria::four_kongs),
-        fan("Á¬Æß¶Ô", {88, 1, 1}, criteria::seven_shifted_pairs),
-        fan("Ê®ÈýçÛ", {88, 1, 1}, criteria::thirteen_orphans),
-        fan("ÇåçÛ¾Å", {64, 1}, criteria::all_terminals),
-        fan("Ð¡ËÄÏ²", {64}, criteria::little_four_winds),
-        fan("Ð¡ÈýÔª", {64}, criteria::little_three_dragons),
-        fan("×ÖÒ»É«", {64, 1}, criteria::all_honours),
-        fan("ËÄ°µ¿Ì", {64}, criteria::four_concealed_triplets),
-        fan("Ò»É«Ë«Áú»á", {64}, criteria::pure_terminal_sequences),
-        fan("Ò»É«ËÄÍ¬Ë³", {48}, criteria::quadruple_sequence),
-        fan("Ò»É«ËÄ½Ú¸ß", {48}, criteria::four_shifted_triplets),
-        fan("Ò»É«ËÄ²½¸ß", {32}, criteria::four_shifted_sequences),
-        fan("Èý¸Ü", {32}, criteria::three_kongs),
-        fan("»ìçÛ¾Å", {32, 1}, criteria::all_terminals_and_honours),
-        fan("Æß¶Ô", {24, 1, 1}, criteria::seven_pairs),
-        fan("ÆßÐÇ²»¿¿", {24, 1, 1}, criteria::greater_honours_and_knitted_tiles),
-        fan("È«Ë«¿Ì", {24}, criteria::all_even_triplets),
-        fan("ÇåÒ»É«", {24, 1}, criteria::full_flush),
-        fan("Ò»É«ÈýÍ¬Ë³", {24}, criteria::triple_sequence),
-        fan("Ò»É«Èý½Ú¸ß", {24}, criteria::three_shifted_triplets),
-        fan("È«´ó", {24, 1}, criteria::upper_tiles),
-        fan("È«ÖÐ", {24, 1}, criteria::middle_tiles),
-        fan("È«Ð¡", {24, 1}, criteria::lower_tiles),
-        fan("ÇåÁú", {16}, criteria::pure_straight),
-        fan("ÈýÉ«Ë«Áú»á", {16}, criteria::mixed_terminal_sequences),
-        fan("Ò»É«Èý²½¸ß", {16}, criteria::three_shifted_sequences),
-        fan("È«´øÎå", {16}, criteria::all_fives),
-        fan("ÈýÍ¬¿Ì", {16}, criteria::mixed_triple_triplet),
-        fan("Èý°µ¿Ì", {16}, criteria::three_concealed_triplets),
-        fan("È«²»¿¿", {12, 1, 1}, criteria::lesser_honours_and_knitted_tiles),
-        fan("×éºÏÁú", {12, 1}, criteria::knitted_straight),
-        fan("´óÓÚÎå", {12, 1}, criteria::upper_four),
-        fan("Ð¡ÓÚÎå", {12, 1}, criteria::lower_four),
-        fan("Èý·ç¿Ì", {12}, criteria::three_wind_triplets),
-        fan("»¨Áú", {8}, criteria::mixed_straight),
-        fan("ÍÆ²»µ¹", {8, 1}, criteria::reversible_tiles),
-        fan("ÈýÉ«ÈýÍ¬Ë³", {8}, criteria::mixed_triple_sequence),
-        fan("ÈýÉ«Èý½Ú¸ß", {8}, criteria::mixed_shifted_triplets),
-        fan("ÎÞ·¬ºÍ", {8, 1}, criteria::chicken_hand),
-        fan("ÃîÊÖ»Ø´º", {8, 1}, criteria::last_tile_draw),
-        fan("º£µ×ÀÌÔÂ", {8, 1}, criteria::last_tile_claim),
-        fan("¸ÜÉÏ¿ª»¨", {8, 1}, criteria::out_with_replacement_tile),
-        fan("ÇÀ¸ÜºÍ", {8, 1}, criteria::robbing_the_kong),
-        fan("ÅöÅöºÍ", {6}, criteria::all_triplets),
-        fan("»ìÒ»É«", {6, 1}, criteria::half_flush),
-        fan("ÈýÉ«Èý²½¸ß", {6}, criteria::mixed_shifted_sequences),
-        fan("ÎåÃÅÆë", {6, 1}, criteria::all_types),
-        fan("È«ÇóÈË", {6}, criteria::melded_hand),
-        fan("Ë«°µ¸Ü", {6}, criteria::two_concealed_kongs),
-        fan("Ë«¼ý¿Ì", {6}, criteria::two_dragon_triplets),
-        fan("Ã÷°µ¸Ü", {5}, criteria::melded_and_concealed_kongs),
-        fan("È«´øçÛ", {4}, criteria::outside_hand),
-        fan("²»ÇóÈË", {4}, criteria::fully_concealed_hand),
-        fan("Ë«Ã÷¸Ü", {4}, criteria::two_melded_kongs),
-        fan("ºÍ¾øÕÅ", {4, 1}, criteria::last_tile),
-        fan("¼ý¿Ì", {2}, criteria::dragon_triplet),
-        fan("È¦·ç¿Ì", {2}, criteria::prevalent_wind),
-        fan("ÃÅ·ç¿Ì", {2}, criteria::seat_wind),
-        fan("ÃÅÇ°Çå", {2}, criteria::concealed_hand),
-        fan("Æ½ºÍ", {2}, criteria::all_sequences),
-        fan("ËÄ¹éÒ»", {2, 1}, criteria::tile_hog),
-        fan("Ë«Í¬¿Ì", {2}, criteria::mixed_double_triplet),
-        fan("Ë«°µ¿Ì", {2}, criteria::two_concealed_triplets),
-        fan("°µ¸Ü", {2}, criteria::concealed_kong),
-        fan("¶ÏçÛ", {2, 1}, criteria::all_simples),
-        fan("Ò»°ã¸ß", {1}, criteria::double_sequence),
-        fan("Ï²Ïà·ê", {1}, criteria::mixed_double_sequence),
-        fan("Á¬Áù", {1}, criteria::short_straight),
-        fan("ÀÏÉÙ¸±", {1}, criteria::two_terminal_sequences),
-        fan("çÛ¾Å¿Ì", {1}, criteria::terminal_triplet),
-        fan("Ã÷¸Ü", {1}, criteria::melded_kong),
-        fan("È±Ò»ÃÅ", {1, 1}, criteria::two_suits),
-        fan("ÎÞ×Ö", {1, 1}, criteria::no_honours),
-        fan("±ßÕÅ", {1}, criteria::edge_wait),
-        fan("Ç¶ÕÅ", {1}, criteria::closed_wait),
-        fan("µ¥µõ", {1}, criteria::single_wait),
-        fan("×ÔÃþ", {1, 1}, criteria::self_drawn)
+        fan("å¤§å››å–œ", {88}, criteria::big_four_winds),
+        fan("å¤§ä¸‰å…ƒ", {88}, criteria::big_three_dragons),
+        fan("ç»¿ä¸€è‰²", {88, 1}, criteria::all_green),
+        fan("ä¹èŽ²å®ç¯", {88}, criteria::nine_gates),
+        fan("å››æ ", {88}, criteria::four_kongs),
+        fan("è¿žä¸ƒå¯¹", {88, 1, 1}, criteria::seven_shifted_pairs),
+        fan("åä¸‰å¹º", {88, 1, 1}, criteria::thirteen_orphans),
+        fan("æ¸…å¹ºä¹", {64, 1}, criteria::all_terminals),
+        fan("å°å››å–œ", {64}, criteria::little_four_winds),
+        fan("å°ä¸‰å…ƒ", {64}, criteria::little_three_dragons),
+        fan("å­—ä¸€è‰²", {64, 1}, criteria::all_honours),
+        fan("å››æš—åˆ»", {64}, criteria::four_concealed_triplets),
+        fan("ä¸€è‰²åŒé¾™ä¼š", {64}, criteria::pure_terminal_sequences),
+        fan("ä¸€è‰²å››åŒé¡º", {48}, criteria::quadruple_sequence),
+        fan("ä¸€è‰²å››èŠ‚é«˜", {48}, criteria::four_shifted_triplets),
+        fan("ä¸€è‰²å››æ­¥é«˜", {32}, criteria::four_shifted_sequences),
+        fan("ä¸‰æ ", {32}, criteria::three_kongs),
+        fan("æ··å¹ºä¹", {32, 1}, criteria::all_terminals_and_honours),
+        fan("ä¸ƒå¯¹", {24, 1, 1}, criteria::seven_pairs),
+        fan("ä¸ƒæ˜Ÿä¸é ", {24, 1, 1}, criteria::greater_honours_and_knitted_tiles),
+        fan("å…¨åŒåˆ»", {24}, criteria::all_even_triplets),
+        fan("æ¸…ä¸€è‰²", {24, 1}, criteria::full_flush),
+        fan("ä¸€è‰²ä¸‰åŒé¡º", {24}, criteria::triple_sequence),
+        fan("ä¸€è‰²ä¸‰èŠ‚é«˜", {24}, criteria::three_shifted_triplets),
+        fan("å…¨å¤§", {24, 1}, criteria::upper_tiles),
+        fan("å…¨ä¸­", {24, 1}, criteria::middle_tiles),
+        fan("å…¨å°", {24, 1}, criteria::lower_tiles),
+        fan("æ¸…é¾™", {16}, criteria::pure_straight),
+        fan("ä¸‰è‰²åŒé¾™ä¼š", {16}, criteria::mixed_terminal_sequences),
+        fan("ä¸€è‰²ä¸‰æ­¥é«˜", {16}, criteria::three_shifted_sequences),
+        fan("å…¨å¸¦äº”", {16}, criteria::all_fives),
+        fan("ä¸‰åŒåˆ»", {16}, criteria::mixed_triple_triplet),
+        fan("ä¸‰æš—åˆ»", {16}, criteria::three_concealed_triplets),
+        fan("å…¨ä¸é ", {12, 1, 1}, criteria::lesser_honours_and_knitted_tiles),
+        fan("ç»„åˆé¾™", {12, 1}, criteria::knitted_straight),
+        fan("å¤§äºŽäº”", {12, 1}, criteria::upper_four),
+        fan("å°äºŽäº”", {12, 1}, criteria::lower_four),
+        fan("ä¸‰é£Žåˆ»", {12}, criteria::three_wind_triplets),
+        fan("èŠ±é¾™", {8}, criteria::mixed_straight),
+        fan("æŽ¨ä¸å€’", {8, 1}, criteria::reversible_tiles),
+        fan("ä¸‰è‰²ä¸‰åŒé¡º", {8}, criteria::mixed_triple_sequence),
+        fan("ä¸‰è‰²ä¸‰èŠ‚é«˜", {8}, criteria::mixed_shifted_triplets),
+        fan("æ— ç•ªå’Œ", {8, 1}, criteria::chicken_hand),
+        fan("å¦™æ‰‹å›žæ˜¥", {8, 1}, criteria::last_tile_draw),
+        fan("æµ·åº•æžæœˆ", {8, 1}, criteria::last_tile_claim),
+        fan("æ ä¸Šå¼€èŠ±", {8, 1}, criteria::out_with_replacement_tile),
+        fan("æŠ¢æ å’Œ", {8, 1}, criteria::robbing_the_kong),
+        fan("ç¢°ç¢°å’Œ", {6}, criteria::all_triplets),
+        fan("æ··ä¸€è‰²", {6, 1}, criteria::half_flush),
+        fan("ä¸‰è‰²ä¸‰æ­¥é«˜", {6}, criteria::mixed_shifted_sequences),
+        fan("äº”é—¨é½", {6, 1}, criteria::all_types),
+        fan("å…¨æ±‚äºº", {6}, criteria::melded_hand),
+        fan("åŒæš—æ ", {6}, criteria::two_concealed_kongs),
+        fan("åŒç®­åˆ»", {6}, criteria::two_dragon_triplets),
+        fan("æ˜Žæš—æ ", {5}, criteria::melded_and_concealed_kongs),
+        fan("å…¨å¸¦å¹º", {4}, criteria::outside_hand),
+        fan("ä¸æ±‚äºº", {4}, criteria::fully_concealed_hand),
+        fan("åŒæ˜Žæ ", {4}, criteria::two_melded_kongs),
+        fan("å’Œç»å¼ ", {4, 1}, criteria::last_tile),
+        fan("ç®­åˆ»", {2}, criteria::dragon_triplet),
+        fan("åœˆé£Žåˆ»", {2}, criteria::prevalent_wind),
+        fan("é—¨é£Žåˆ»", {2}, criteria::seat_wind),
+        fan("é—¨å‰æ¸…", {2}, criteria::concealed_hand),
+        fan("å¹³å’Œ", {2}, criteria::all_sequences),
+        fan("å››å½’ä¸€", {2, 1}, criteria::tile_hog),
+        fan("åŒåŒåˆ»", {2}, criteria::mixed_double_triplet),
+        fan("åŒæš—åˆ»", {2}, criteria::two_concealed_triplets),
+        fan("æš—æ ", {2}, criteria::concealed_kong),
+        fan("æ–­å¹º", {2, 1}, criteria::all_simples),
+        fan("ä¸€èˆ¬é«˜", {1}, criteria::double_sequence),
+        fan("å–œç›¸é€¢", {1}, criteria::mixed_double_sequence),
+        fan("è¿žå…­", {1}, criteria::short_straight),
+        fan("è€å°‘å‰¯", {1}, criteria::two_terminal_sequences),
+        fan("å¹ºä¹åˆ»", {1}, criteria::terminal_triplet),
+        fan("æ˜Žæ ", {1}, criteria::melded_kong),
+        fan("ç¼ºä¸€é—¨", {1, 1}, criteria::two_suits),
+        fan("æ— å­—", {1, 1}, criteria::no_honours),
+        fan("è¾¹å¼ ", {1}, criteria::edge_wait),
+        fan("åµŒå¼ ", {1}, criteria::closed_wait),
+        fan("å•åŠ", {1}, criteria::single_wait),
+        fan("è‡ªæ‘¸", {1, 1}, criteria::self_drawn)
     };
 
     enum indices {
@@ -1009,20 +1009,28 @@ namespace mcr_mahjong {
             res = r.first;
             fr_res = r.second;
         }
-        auto extend = [](const std::string& s, int32_t length) {
+        auto size_in_console = [](const std::string& s) {
+            std::size_t size = 0;
+            for (unsigned char c : s) {
+                if ((c & 0b11000000) != 0b10000000)
+                    size += (1 + (c >= 0b10000000));
+            }
+            return size;
+        };
+        auto extend = [&size_in_console](const std::string& s, int32_t length) {
             if (length > 0)
-                return s + std::string(length - s.size(), ' ');
-            return std::string(- length - s.size(), ' ') + s;
+                return s + std::string(length - size_in_console(s), ' ');
+            return std::string(- length - size_in_console(s), ' ') + s;
         };
         std::stringstream ss;
         ss << std::string(23, '-') << '\n';
         for (uint8_t i = 0; i < fan_count; ++i)
             if (fr_res[i]) {
-                ss << extend(fans[i].name, 13) << ((fr_res[i] == 1) ? "  " : "¡Á" + std::to_string((int)fr_res[i])) << extend(std::to_string(fr_res[i] * fans[i].tag.value), -8);
+                ss << extend(fans[i].name, 13) << ((fr_res[i] == 1) ? "  " : "Ã—" + std::to_string((int)fr_res[i])) << extend(std::to_string(fr_res[i] * fans[i].tag.value), -8);
                 ss << '\n';
             }
         ss << std::string(23, '=') << '\n';
-        ss << extend("×Ü¼Æ", 5) << extend(std::to_string(res), -18) << '\n';
+        ss << extend("æ€»è®¡", 5) << extend(std::to_string(res), -18) << '\n';
         return {true, res, ss.str()};
     };
 
