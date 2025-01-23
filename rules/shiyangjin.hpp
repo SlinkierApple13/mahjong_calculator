@@ -10,6 +10,13 @@ namespace shiyangjin {
 
     using namespace mahjong;
 
+    namespace patterns {
+
+        constexpr uint64_t nine_gates_m_s = 0b011001001001001001001001011000ull;
+        constexpr uint64_t nine_gates_p = 0b011001001001001001001001011000ull << 32;
+
+    }
+
     struct tag {
         uint8_t value;
         bool special_compatible = false;
@@ -110,11 +117,28 @@ namespace shiyangjin {
             return is_seven_pairs(h);
         }
 
-        constexpr res_t big_seven_pairs(const hand& h) {
+        constexpr res_t big_seven_pairs_1(const hand& h) {
             if (!is_seven_pairs(h)) return false;
+            uint8_t count = 0;
             for (tile_t ti : tile_set::all_tiles)
-                if (h.counter().count(ti) == 4) return true;
-            return false;
+                if (h.counter().count(ti) == 4) ++count;
+            return count == 1;
+        }
+
+        constexpr res_t big_seven_pairs_2(const hand& h) {
+            if (!is_seven_pairs(h)) return false;
+            uint8_t count = 0;
+            for (tile_t ti : tile_set::all_tiles)
+                if (h.counter().count(ti) == 4) ++count;
+            return count == 2;
+        }
+
+        constexpr res_t big_seven_pairs_3(const hand& h) {
+            if (!is_seven_pairs(h)) return false;
+            uint8_t count = 0;
+            for (tile_t ti : tile_set::all_tiles)
+                if (h.counter().count(ti) == 4) ++count;
+            return count == 3;
         }
 
         constexpr res_t all_258(const hand& h) {
@@ -127,8 +151,38 @@ namespace shiyangjin {
             });
         }
 
-        constexpr res_t all_terminal_pairs(const hand& h) {
-            return h.counter().count() == h.counter().count({1_m, 9_m, 1_p, 9_p, 1_s, 9_s}) && is_seven_pairs(h);
+        constexpr res_t all_terminals(const hand& h) {
+            return h.counter().count() == h.counter().count({1_m, 9_m, 1_p, 9_p, 1_s, 9_s});
+        }
+
+        constexpr res_t three_kongs(const hand& h) {
+            uint8_t count = 0;
+            for (const auto& m : h.melds())
+                if (m.type() == meld_type::kong) ++count;
+            return count == 3;
+        }
+
+        constexpr res_t four_kongs(const hand& h) {
+            uint8_t count = 0;
+            for (const auto& m : h.melds())
+                if (m.type() == meld_type::kong) ++count;
+            return count == 4;
+        }
+
+        constexpr res_t nine_gates(const hand& h) {
+            auto c = h.counter(false);
+            if (h.winning_type()(win_type::self_drawn)) {
+                for (tile_t ti : tile_set::numbered_tiles) {
+                    if (c.count(ti) >= 2) {
+                        auto t = c - ti;
+                        if (t == std::make_pair(patterns::nine_gates_m_s, 0ull) || t == std::make_pair(0ull, patterns::nine_gates_m_s) || t == std::make_pair(patterns::nine_gates_p, 0ull)) 
+                            return true;
+                    }
+                }
+                return false;
+            }
+            c -= h.winning_tile();
+            return (c == std::make_pair(patterns::nine_gates_m_s, 0ull) || c == std::make_pair(0ull, patterns::nine_gates_m_s) || c == std::make_pair(patterns::nine_gates_p, 0ull));
         }
 
     }
@@ -143,10 +197,15 @@ namespace shiyangjin {
         fan("碰碰和", {3}, criteria::all_triplets),
         fan("小七对", {3, 1, 1}, criteria::seven_pairs),
         fan("全带幺", {3}, criteria::pure_outside_hand),
-        fan("全带幺", {3, 1, 1}, criteria::all_terminal_pairs),
         fan("清一色", {4, 1}, criteria::full_flush),
-        fan("豪华七对", {5, 1, 1}, criteria::big_seven_pairs),
-        fan("将一色", {5, 1}, criteria::all_258)
+        fan("豪华七对", {5, 1, 1}, criteria::big_seven_pairs_1),
+        fan("将一色", {5, 1}, criteria::all_258),
+        fan("双豪七对", {10, 1, 1}, criteria::big_seven_pairs_2),
+        fan("三杠", {10}, criteria::three_kongs),
+        fan("三豪七对", {20, 1, 1}, criteria::big_seven_pairs_3),
+        fan("清老头", {20, 1}, criteria::all_terminals),
+        fan("九莲宝灯", {20}, criteria::nine_gates),
+        fan("十八罗汉", {20}, criteria::four_kongs)
     };
 
     enum indices {
@@ -159,18 +218,30 @@ namespace shiyangjin {
         all_triplets,
         seven_pairs,
         pure_outside_hand,
-        all_terminal_pairs,
         full_flush,
-        big_seven_pairs,
+        big_seven_pairs_1,
         all_258,
+        big_seven_pairs_2,
+        three_kongs,
+        big_seven_pairs_3,
+        all_terminals,
+        nine_gates,
+        four_kongs,
         fan_count
     };
 
     std::vector<uint8_t> derepellenise(const std::vector<uint8_t>& f) {
         using enum indices;
         std::vector<uint8_t> fr = f;
-        fr[seven_pairs] &= !fr[big_seven_pairs];
+        fr[seven_pairs] &= !(fr[big_seven_pairs_1] || fr[big_seven_pairs_2]);
         fr[pair_258] &= !(fr[all_258] || fr[full_flush] || fr[all_triplets]);
+        for (uint8_t i = big_seven_pairs_3; i < fan_count; ++i) {
+            if (fr[i]) {
+                for (uint8_t j = 0; j < big_seven_pairs_3; ++j)
+                    fr[j] = 0;
+                break;
+            }
+        }
         return fr;
     }
 
@@ -224,11 +295,21 @@ namespace shiyangjin {
         ss << std::string(23, '-') << '\n';
         for (uint8_t i = 0; i < fan_count; ++i)
             if (fr_res[i]) {
-                ss << extend(fans[i].name, 15) << extend(std::to_string(fr_res[i] * fans[i].tag.value), -8);
+                ss << extend(fans[i].name, 15) << extend((fans[i].tag.value >= 20) ? "满贯" : (std::to_string(fans[i].tag.value)), -8);
                 ss << '\n';
             }
         ss << std::string(23, '=') << '\n';
-        ss << extend("总计", 5) << extend(std::to_string(res), -18) << '\n';
+        std::string total = "总计";
+        if (res >= 20) {
+            total = "总计          满贯";
+            for (uint8_t i = 0; i < big_seven_pairs_3; ++i) {
+                if (fr_res[i]) {
+                    total = "总计      累计满贯";
+                    break;
+                }
+            }
+        }
+        ss << extend(total, 20) << extend(std::to_string(std::min<uint16_t>(res, 20)), -3) << '\n';
         return {true, res, ss.str()};
     };
 
