@@ -103,8 +103,13 @@ namespace mahjong {
             return value;
         }
 
-        template<typename T> requires std::is_same_v<typename T::value_type, tile_t>
+        template<typename T> requires std::is_constructible_v<typename T::value_type, tile_t>
         constexpr bool is_in(const T& tiles) const {
+            return std::find(tiles.begin(), tiles.end(), value) != tiles.end();
+        }
+
+        template<typename T> requires std::is_constructible_v<T, tile_t>
+        constexpr bool is_in(std::initializer_list<T> tiles) const {
             return std::find(tiles.begin(), tiles.end(), value) != tiles.end();
         }
 

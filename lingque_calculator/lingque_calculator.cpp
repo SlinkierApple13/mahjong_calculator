@@ -25,7 +25,7 @@ bool calculate(const std::string& s0 = "") {
             default: return false;
         }
     });
-    if (!h.is_valid()) {
+    if (!momochai_lingque::input_verifier(h)) {
         std::cout << "- 无效输入.\n" << std::endl;
         return true;
     }
@@ -42,11 +42,12 @@ int main() {
     setlocale(LC_ALL, "zh_CN.UTF-8");
 #endif
     std::cout << "[灵雀 第 27 版 计算器]\n\n";
+    std::cout << "牌张：123456789m/p/s, ESWNCFP\n";
     std::cout << "门风:  ! - 東,    @ - 南,    # - 西,    $ - 北\n";
-    std::cout << "和牌:  % - 自摸,  ^ - 岭上开花/抢杠,  & - 海底/河底,  * - 天和/地和\n";
-    std::cout << "副露: [] - 暗杠, () - 其余\n\n";
-    std::cout << "例: [FFFF](123m)456p789sWW#%\n";
-    calculate("[FFFF](123m)456p789sWW#%");
+    std::cout << "和牌:  % - 自摸,  ^ - 岭上开花/抢杠,  & - 海底捞月/河底捞鱼,  * - 天和/地和\n";
+    std::cout << "副露: [] - 暗杠, () - 其余\n\n输入的最后一张牌视为和张.\n\n";
+    std::cout << "例: [SSSS](CCCC)12378999s@%&\n";
+    calculate("[SSSS](CCCC)12378999s@%&");
     while (calculate());
     return 0;
 }

@@ -53,7 +53,7 @@ bool calculate(const std::string& s0 = "") {
             default: return false;
         }
     });
-    if (!h.is_valid()) {
+    if (!mcr_mahjong::input_verifier(h)) {
         std::cout << "- 无效输入.\n" << std::endl;
         return true;
     }
@@ -70,11 +70,12 @@ int main() {
     setlocale(LC_ALL, "zh_CN.UTF-8");
 #endif
     std::cout << "[国标麻雀 1998 版 计算器]\n\n";
+    std::cout << "  牌张：123456789m/p/s, ESWNCFP\n";
     std::cout << "圈门风:  ! - 東,    @ - 南,    # - 西,    $ - 北\n";
-    std::cout << "  和牌:  % - 自摸,  ^ - 岭上开花/抢杠,  & - 海底/河底,  * - 绝张\n";
-    std::cout << "  副露: [] - 暗杠, () - 其余\n\n";
-    std::cout << "例: [WWWW](123m)456p789sFF#@%\n";
-    calculate("[WWWW](123m)456p789sFF#@%");
+    std::cout << "  和牌:  % - 自摸,  ^ - 杠上开花/抢杠和,  & - 妙手回春/海底捞月,  * - 和绝张\n";
+    std::cout << "  副露: [] - 暗杠, () - 其余\n\n输入的最后一张牌视为和张.\n\n";
+    std::cout << "例: [WWWW](123m)456p789sFF#@%^&\n";
+    calculate("[WWWW](123m)456p789sFF#@%^&");
     while (calculate());
     return 0;
 }
