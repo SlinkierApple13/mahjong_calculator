@@ -291,6 +291,7 @@ namespace shiyangjin {
                 return s + std::string(length - size_in_console(s), ' ');
             return std::string(- length - size_in_console(s), ' ') + s;
         };
+        if (res == 0u) return {true, 0u, std::string(23, '=') + '\n' + extend("无番和", 20) + "  0\n"};
         std::stringstream ss;
         ss << std::string(23, '-') << '\n';
         for (uint8_t i = 0; i < fan_count; ++i)

@@ -1085,7 +1085,7 @@ j1:     if (fan_results[concealed_hand]) ++multiplier;
                 return s + std::string(length - size_in_console(s), ' ');
             return std::string(-length - size_in_console(s), ' ') + s;
         };
-        if (res_mult == 0u) return {true, 0u, std::string(34, '=') + '\n' + extend("无番和", 20) + "  0 × 0 =    0\n"};
+        if (res_mult == 0u) return {true, 0u, std::string(34, '=') + '\n' + extend("平和", 20) + "  0 × 0 =    0\n"};
         std::stringstream ss;
         ss << std::string(34, '-') << '\n';
         for (uint8_t i = 0; i < fan_count; ++i)
