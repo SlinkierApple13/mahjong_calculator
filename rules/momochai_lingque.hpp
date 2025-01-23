@@ -132,6 +132,7 @@ namespace momochai_lingque {
         if (kong_count == 0 && h.winning_type()(win_type::kong_related | win_type::self_drawn)) return false;
         if (h.melds().size() && h.winning_type()(win_type::heavenly_or_earthly_hand)) return false;
         if (h.counter().count(h.winning_tile()) > 1 && h.winning_type()(win_type::kong_related, win_type::self_drawn)) return false;
+        if (h.winning_type()(win_type::final_tile | win_type::heavenly_or_earthly_hand)) return false;
         return true;
     });
 
