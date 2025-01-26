@@ -13,6 +13,8 @@
 
 namespace mahjong {
 
+    typedef unsigned long long uint64_t;
+
     typedef uint8_t tile_t;
     typedef uint8_t num_t;
     typedef uint8_t hand_type_t;
@@ -217,7 +219,7 @@ namespace mahjong {
         }
 
         constexpr std::array<tile_t, 3> tiles_of_number(num_t num) {
-            return {num | suit_type::m, num | suit_type::p, num | suit_type::s};
+            return {tile_t(num | suit_type::m), tile_t(num | suit_type::p), tile_t(num | suit_type::s)};
         }
 
     }

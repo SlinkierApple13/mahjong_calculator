@@ -832,7 +832,7 @@ namespace momochai_lingque {
         fan("清一色", {category::suits, 24, 4, 1}, criteria::full_flush),
         fan("混一色", {category::suits, 8, 3, 1}, criteria::half_flush),
         fan("缺一门", {category::suits, 2, 1, 1}, criteria::two_suits),
-        fan("五门齐", {category::suits, 4, 2}, criteria::all_types),
+        fan("五门齐", {category::suits, 4, 3}, criteria::all_types),
         fan("二数", {category::numbers, 48, 5}, criteria::two_numbers),
         fan("三聚", {category::numbers, 24, 3, 1}, criteria::three_consecutive_numbers),
         fan("四聚", {category::numbers, 8, 3, 1}, criteria::four_consecutive_numbers),
@@ -863,7 +863,7 @@ namespace momochai_lingque {
         fan("三色连刻", {category::partial_correlation, 8, 2}, criteria::mixed_shifted_triplets),
         fan("三色步高", {category::partial_correlation, 4, 2}, criteria::mixed_shifted_sequences),
         fan("三色连环", {category::partial_correlation, 4, 2}, criteria::mixed_chained_sequences),
-        fan("三色贯通", {category::partial_correlation, 8, 2}, criteria::mixed_straight),
+        fan("三色贯通", {category::partial_correlation, 8, 3}, criteria::mixed_straight),
         fan("镜龙会", {category::partial_correlation, 12, 3}, criteria::mirrored_short_straights)
     };
 
