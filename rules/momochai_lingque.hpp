@@ -788,8 +788,8 @@ namespace momochai_lingque {
     }
 
     const std::vector<fan> list_of_fans = {
-        fan("天和", {category::occasional, 64, 3, 1}, criteria::heavenly_hand),
-        fan("地和", {category::occasional, 64, 3, 1}, criteria::earthly_hand),
+        fan("天和", {category::occasional, 64, 4, 1}, criteria::heavenly_hand),
+        fan("地和", {category::occasional, 64, 4, 1}, criteria::earthly_hand),
         fan("岭上开花", {category::occasional, 8, 2, 1}, criteria::out_with_replacement_tile),
         fan("海底捞月", {category::occasional, 8, 2, 1}, criteria::last_tile_draw),
         fan("河底捞鱼", {category::occasional, 8, 2, 1}, criteria::last_tile_claim),
