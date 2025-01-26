@@ -11,9 +11,9 @@
 #include <functional>
 #include <sstream>
 
-namespace mahjong {
+#define uint64_t unsigned long long
 
-    typedef unsigned long long uint64_t;
+namespace mahjong {
 
     typedef uint8_t tile_t;
     typedef uint8_t num_t;
