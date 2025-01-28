@@ -693,8 +693,8 @@ namespace mcr_mahjong {
         }
 
         constexpr res_t melded_hand(const hand& h) {
-            if (h.counter(false) != 2) return false;
-            if (!self_drawn(h)) return false;
+            if (h.counter(false).count() != 2) return false;
+            if (self_drawn(h)) return false;
             for (const auto& m : h.melds())
                 if (m.type() == meld_type::kong && m.concealed()) return false;
             return true;
@@ -983,13 +983,13 @@ namespace mcr_mahjong {
         return fr;
     }
 
-    std::pair<uint16_t, std::vector<uint8_t>> basic_score_from_fans(const std::vector<uint8_t>& f) {
+    std::pair<uint16_t, std::vector<uint8_t>> basic_score_from_fans(const std::vector<uint8_t>& f, bool is_decomposition = true) {
         using enum indices;
         uint16_t res = 0;
         std::vector<uint8_t> fr = derepellenise(f);
         for (uint8_t i = 0; i < fan_count; ++i)
             res += fr[i] * fans[i].tag.value;
-        if (res == 0) {
+        if (res == 0 && is_decomposition) {
             fr[chicken_hand] = 1;
             res = 8;
         } else {
@@ -1017,7 +1017,7 @@ namespace mcr_mahjong {
         }
         for (uint8_t i = 0; i < fan_count; ++i)
             fr[i] = (fans[i].tag.special_compatible) ? fan_results[i][0] : 0u;
-        const auto r = basic_score_from_fans(fr);
+        const auto r = basic_score_from_fans(fr, false);
         if (r.first > res) {
             res = r.first;
             fr_res = r.second;
@@ -1044,7 +1044,7 @@ namespace mcr_mahjong {
             }
         ss << std::string(23, '=') << '\n';
         ss << extend("总计", 5) << extend(std::to_string(res), -18) << '\n';
-        return {true, res, ss.str()};
+        return {true, res, ss.str(), fr_res};
     };
 
     const scorer calculator(fans, score_from_fans, is_winning_hand);

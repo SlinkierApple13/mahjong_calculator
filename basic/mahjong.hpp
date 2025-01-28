@@ -616,6 +616,49 @@ namespace mahjong {
         const bool knitted_straight_allowed;
 
     public:
+        // win_type(16):win_tile(16):open_meld_0(16):open_meld_1(16):open_meld_2(16):open_meld_3(16):closed_counter_s_z(64):closed_counter_m_p(64)
+        typedef std::bitset<320> hand_t;
+        
+        hand_t to_bits() const {
+            hand_t bits;
+            bits |= win_type;
+            bits <<= 16;
+            bits |= win_tile;
+            for (const meld& m : open_melds) {
+                bits <<= 16;
+                bits |= (meld_t)m;
+            }
+            for (int i = open_melds.size(); i < 4; ++i) {
+                bits <<= 16;
+            }
+            bits <<= 64;
+            bits |= closed_counter[1];
+            bits <<= 64;
+            bits |= closed_counter[0];
+            return bits;
+        }
+
+        static hand from_bits(hand_t bits) {
+            const hand_t mask16 = 0xffff;
+            const hand_t mask64 = 0xffffffffffffffff;
+            uint64_t m_p = (bits & mask64).to_ullong();
+            bits >>= 64;
+            uint64_t s_z = (bits & mask64).to_ullong();
+            bits >>= 64;
+            auto tiles = tile_counter(m_p, s_z).tiles();
+            std::vector<meld> reversed_melds;
+            for (uint8_t i = 0; i < 4; ++i) {
+                meld_t m = (meld_t)(bits & mask16).to_ullong();
+                if (m) reversed_melds.push_back(meld(m));
+                bits >>= 16;
+            }
+            std::vector<meld> melds(reversed_melds.rbegin(), reversed_melds.rend());
+            tile_t wtile = (tile_t)(bits & mask16).to_ullong();
+            bits >>= 16;
+            win_t wtype = (win_t)(bits & mask16).to_ullong();
+            return hand(tiles, melds, wtile, wtype, true);
+        }
+
         class decomposition {
         
         private:
@@ -713,7 +756,7 @@ namespace mahjong {
                 for (uint8_t i = (index + 1) >> 1; i < 34; ++i) {
                     tile_t ti = tile_set::all_tiles[i];
                     if (counter.count(ti) >= 3)
-                        queue.push({decomposition(front, meld(ti, meld_type::triplet, (mahjong::win_type(this->win_type)(mahjong::win_type::self_drawn) || ti != win_tile || total_counter.count(ti) == 4), false)), i * 2});
+                        queue.push({decomposition(front, meld(ti, meld_type::triplet, (mahjong::win_type(this->win_type)(mahjong::win_type::self_drawn) || ti != win_tile || closed_counter.count(ti) == 4), false)), i * 2});
                 }
                 for (uint8_t i = index >> 1; i < 27; ++i) {
                     tile_t ti = tile_set::numbered_tiles[i];
@@ -726,8 +769,8 @@ namespace mahjong {
 
     public:
         template<typename F> requires std::is_constructible_v<tile, F>
-        hand(const std::vector<F>& tiles, const std::vector<meld>& melds, F win_tile, win_t win_type = 0u, bool winning_tile_included = false, bool knitted_straight = KNITTED_STRAIGHT_DEFAULT) : 
-            closed_counter(tiles), total_counter(tiles, melds), open_melds(melds), win_type(win_type), win_tile(win_tile), knitted_straight_allowed(knitted_straight) {
+        hand(const std::vector<F>& tiles, const std::vector<meld>& melds, F wtile, win_t wtype = 0u, bool winning_tile_included = false, bool knitted_straight = KNITTED_STRAIGHT_DEFAULT) : 
+            closed_counter(tiles), total_counter(tiles, melds), open_melds(melds), win_type(wtype), win_tile(wtile), knitted_straight_allowed(knitted_straight) {
             if (!winning_tile_included) {
                 closed_counter.add(win_tile);
                 total_counter.add(win_tile);
@@ -736,11 +779,31 @@ namespace mahjong {
         }
 
         template<typename F> requires std::is_constructible_v<tile, F>
-        hand(std::vector<F>&& tiles, std::vector<meld>&& melds, F win_tile, win_t win_type = 0u, bool winning_tile_included = false, bool knitted_straight = KNITTED_STRAIGHT_DEFAULT) : 
-            closed_counter(tiles), total_counter(tiles, melds), open_melds(melds), win_type(win_type), win_tile(win_tile), knitted_straight_allowed(knitted_straight) {
+        hand(std::vector<F>&& tiles, std::vector<meld>&& melds, F wtile, win_t wtype = 0u, bool winning_tile_included = false, bool knitted_straight = KNITTED_STRAIGHT_DEFAULT) : 
+            closed_counter(tiles), total_counter(tiles, melds), open_melds(melds), win_type(wtype), win_tile(wtile), knitted_straight_allowed(knitted_straight) {
             if (!winning_tile_included) {
                 closed_counter.add(win_tile);
                 total_counter.add(win_tile);
+            }
+            decompose_init();
+        }
+
+        template<typename F> requires std::is_constructible_v<tile, F>
+        hand(const std::vector<meld>& all_melds, F pair, F wtile, win_t wtype = 0u, bool knitted_straight = KNITTED_STRAIGHT_DEFAULT) : 
+            closed_counter({pair, pair}), total_counter({pair, pair}, all_melds), win_type(wtype), win_tile(wtile), knitted_straight_allowed(knitted_straight) {
+            for (const meld& m : all_melds) {
+                if (m.fixed()) open_melds.push_back(m);
+                else closed_counter.add(m);
+            }
+            decompose_init();
+        }
+
+        template<typename F> requires std::is_constructible_v<tile, F>
+        hand(std::vector<meld>&& all_melds, F pair, F wtile, win_t wtype = 0u, bool knitted_straight = KNITTED_STRAIGHT_DEFAULT) : 
+            closed_counter({pair, pair}), total_counter({pair, pair}, all_melds), win_type(wtype), win_tile(wtile), knitted_straight_allowed(knitted_straight) {
+            for (const meld& m : all_melds) {
+                if (m.fixed()) open_melds.push_back(m);
+                else closed_counter.add(m);
             }
             decompose_init();
         }
@@ -774,7 +837,7 @@ namespace mahjong {
             if (total_counter.count() - kong_count != 14) return false;
             if (!check_fifth_tile) return true;
             for (tile_t ti : tile_set::all_tiles)
-                if (closed_counter.count(ti) > 4)
+                if (total_counter.count(ti) > 4)
                     return false;
             return true;
         }
@@ -800,6 +863,7 @@ namespace mahjong {
                 for (uint8_t i = 0; i < h.counter(false).count(ti) - (ti == h.win_tile); ++i)
                     os << mahjong::tile(ti);
             os << ' ' << mahjong::tile(h.win_tile);
+            os << ' ' << std::bitset<16>(h.win_type);
             return os;
         }
 
@@ -832,7 +896,7 @@ namespace mahjong {
 
     using verifier = std::function<bool(const hand&)>;
 
-    template<typename R, typename T, typename element_tag_type = uint32_t, typename tag_type = uint32_t> requires std::is_arithmetic_v<R> && std::is_arithmetic_v<T> && (!std::is_same_v<R, bool>)
+    template<typename R, typename T, typename element_tag_type = uint32_t, typename tag_type = uint32_t, typename detail_type = std::vector<uint8_t>> requires std::is_arithmetic_v<R> && std::is_arithmetic_v<T> && (!std::is_same_v<R, bool>)
     class scoring_system {
         
     private:
@@ -846,10 +910,12 @@ namespace mahjong {
             const bool valid;
             const R score;
             const tag_type t;
+            const detail_type d;
 
         public:
             result(bool valid, R score) : valid(valid), score(score) {}
             result(bool valid, R score, const tag_type& tag) : valid(valid), score(score), t(tag) {}
+            result(bool valid, R score, const tag_type& tag, const detail_type& detail) : valid(valid), score(score), t(tag), d(detail) {}
 
             operator bool() const {
                 return valid;
@@ -861,6 +927,10 @@ namespace mahjong {
 
             const tag_type& tag() const {
                 return t;
+            }
+
+            const detail_type& detail() const {
+                return d;
             }
 
         };
