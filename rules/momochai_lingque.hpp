@@ -788,8 +788,8 @@ namespace momochai_lingque {
     }
 
     const std::vector<fan> list_of_fans = {
-        fan("天和", {category::occasional, 64, 4, 1}, criteria::heavenly_hand),
-        fan("地和", {category::occasional, 64, 4, 1}, criteria::earthly_hand),
+        fan("天和", {category::occasional, 48, 3, 1}, criteria::heavenly_hand),
+        fan("地和", {category::occasional, 48, 3, 1}, criteria::earthly_hand),
         fan("岭上开花", {category::occasional, 8, 2, 1}, criteria::out_with_replacement_tile),
         fan("海底捞月", {category::occasional, 8, 2, 1}, criteria::last_tile_draw),
         fan("河底捞鱼", {category::occasional, 8, 2, 1}, criteria::last_tile_claim),
@@ -799,7 +799,7 @@ namespace momochai_lingque {
         fan("全不靠", {category::special, 8, 3, 1, 1}, criteria::honours_and_knitted_tiles),
         fan("十三幺", {category::special, 48, 3, 1, 1}, criteria::thirteen_orphans),
         fan("门前清", {category::concealed, 2, 1, 1}, criteria::concealed_hand),
-        fan("四杠", {category::triplets, 88, 5}, criteria::four_kongs),
+        fan("四杠", {category::triplets, 96, 5}, criteria::four_kongs),
         fan("三杠", {category::triplets, 32, 4}, criteria::three_kongs),
         fan("双杠", {category::triplets, 8, 2}, criteria::two_kongs),
         fan("杠", {category::triplets, 4, 1}, criteria::kong),
@@ -809,10 +809,10 @@ namespace momochai_lingque {
         fan("暗刻", {category::triplets, 2, 1}, criteria::concealed_triplet),
         fan("对对和", {category::triplets, 8, 3}, criteria::all_triplets),
         fan("四归", {category::triplets, 4, 1}, criteria::tile_hog),
-        fan("大七星", {category::honours, 112, 5, 1, 1}, criteria::big_seven_honours),
-        fan("字一色", {category::honours, 32, 5, 1}, criteria::all_honours),
-        fan("大四喜", {category::honours, 88, 5}, criteria::big_four_winds),
-        fan("小四喜", {category::honours, 48, 5}, criteria::little_four_winds),
+        // fan("大七星", {category::honours, 112, 5, 1, 1}, criteria::big_seven_honours),
+        fan("字一色", {category::honours, 48, 5, 1}, criteria::all_honours),
+        fan("大四喜", {category::honours, 64, 5}, criteria::big_four_winds),
+        fan("小四喜", {category::honours, 48, 4}, criteria::little_four_winds),
         fan("四喜对", {category::honours, 24, 3, 1}, criteria::four_wind_pairs),
         fan("大三元", {category::honours, 48, 4}, criteria::big_three_dragons),
         fan("小三元", {category::honours, 24, 4}, criteria::little_three_dragons),
@@ -822,24 +822,24 @@ namespace momochai_lingque {
         fan("番牌 發", {category::honours, 2, 1, 1}, criteria::green_dragon),
         fan("番牌 白", {category::honours, 2, 1, 1}, criteria::white_dragon),
         fan("客风刻", {category::honours, 2, 1, 1}, criteria::wind_triplet),
-        fan("清幺九", {category::terminals, 88, 5}, criteria::all_terminals),
+        fan("清幺九", {category::terminals, 64, 5}, criteria::all_terminals),
         fan("混幺九", {category::terminals, 16, 3, 1}, criteria::all_terminals_and_honours),
         fan("清带幺", {category::terminals, 12, 3}, criteria::pure_outside_hand),
         fan("混带幺", {category::terminals, 4, 3}, criteria::mixed_outside_hand),
         fan("幺九刻", {category::terminals, 2, 1}, criteria::terminal_triplet),
-        fan("九莲宝灯", {category::suits, 112, 5}, criteria::nine_gates),
-        fan("连七对", {category::suits, 88, 5, 1, 1}, criteria::seven_shifted_pairs),
+        fan("九莲宝灯", {category::suits, 96, 5}, criteria::nine_gates),
+        // fan("连七对", {category::suits, 88, 5, 1, 1}, criteria::seven_shifted_pairs),
         fan("清一色", {category::suits, 24, 4, 1}, criteria::full_flush),
         fan("混一色", {category::suits, 8, 3, 1}, criteria::half_flush),
         fan("缺一门", {category::suits, 2, 1, 1}, criteria::two_suits),
         fan("五门齐", {category::suits, 4, 3}, criteria::all_types),
-        fan("二数", {category::numbers, 48, 5}, criteria::two_numbers),
+        fan("二数", {category::numbers, 32, 4}, criteria::two_numbers),
         fan("三聚", {category::numbers, 24, 3, 1}, criteria::three_consecutive_numbers),
         fan("四聚", {category::numbers, 8, 3, 1}, criteria::four_consecutive_numbers),
         fan("九数贯通", {category::numbers, 12, 3}, criteria::nine_numbers),
         fan("镜数", {category::overall_correlation, 12, 3}, criteria::reflected_hand),
         fan("镜数对", {category::overall_correlation, 24, 3, 1, 1}, criteria::reflected_pairs),
-        fan("四同顺", {category::identical_melds, 112, 6}, criteria::quadruple_sequence),
+        fan("四同顺", {category::identical_melds, 96, 6}, criteria::quadruple_sequence),
         fan("三同顺", {category::identical_melds, 32, 4}, criteria::triple_sequence),
         fan("二般高", {category::identical_melds, 24, 3}, criteria::two_double_sequences),
         fan("一般高", {category::identical_melds, 4, 2}, criteria::double_sequence),
@@ -889,7 +889,7 @@ namespace momochai_lingque {
         concealed_triplet,
         all_triplets,
         tile_hog,
-        big_seven_honours,
+        // big_seven_honours,
         all_honours,
         big_four_winds,
         little_four_winds,
@@ -908,7 +908,7 @@ namespace momochai_lingque {
         mixed_outside_hand,
         terminal_triplet,
         nine_gates,
-        seven_shifted_pairs,
+        // seven_shifted_pairs,
         full_flush,
         half_flush,
         two_suits,
@@ -953,18 +953,15 @@ namespace momochai_lingque {
         std::vector<uint8_t> fr = f;
         fr[self_drawn] &= (!f[blessing_of_heaven] && !f[last_tile_draw] && !f[out_with_replacement_tile]);
         fr[concealed_hand] &= (!f[blessing_of_heaven] && !f[blessing_of_earth] && !f[four_concealed_triplets]
-            && !f[nine_gates] && !f[seven_pairs] && !f[big_seven_honours] && !f[four_wind_pairs]
-            && !f[three_dragon_pairs] && !f[seven_shifted_pairs] && !f[reflected_pairs] && !f[two_triple_pairs]
-            && !f[three_mirrored_pairs] && !f[thirteen_orphans] && !f[honours_and_knitted_tiles]);
+            && !f[nine_gates] && !f[seven_pairs] && !f[thirteen_orphans] && !f[honours_and_knitted_tiles]);
         fr[two_concealed_triplets] &= !f[nine_gates];
         fr[concealed_triplet] &= !f[nine_gates];
-        fr[all_triplets] &= (!f[four_kongs] && !f[four_concealed_triplets] && !f[big_four_winds] && !f[all_terminals] && !f[two_numbers] && !f[four_shifted_triplets]);
+        fr[all_triplets] &= (!f[four_kongs] && !f[four_concealed_triplets]);
         fr[tile_hog] -= fr[kong];
         fr[tile_hog] -= 2 * fr[two_kongs];
         fr[tile_hog] -= 3 * fr[three_kongs];
         fr[tile_hog] -= 4 * fr[four_kongs];
         fr[tile_hog] *= (!f[quadruple_sequence] && !f[nine_gates]);
-        fr[all_honours] &= !f[big_seven_honours];
         fr[seat_wind] *= (!f[big_four_winds] && !f[little_four_winds] && !f[four_wind_pairs]);
         fr[red_dragon] *= (!f[big_three_dragons] && !f[little_three_dragons] && !f[three_dragon_pairs]);
         fr[green_dragon] *= (!f[big_three_dragons] && !f[little_three_dragons] && !f[three_dragon_pairs]);
@@ -974,12 +971,12 @@ namespace momochai_lingque {
         fr[pure_outside_hand] &= !f[all_terminals];
         fr[mixed_outside_hand] &= (!f[all_terminals_and_honours] && !f[pure_outside_hand]);
         fr[terminal_triplet] *= (!f[all_terminals] && !f[nine_gates]);
-        fr[full_flush] &= (!f[nine_gates] && !f[seven_shifted_pairs]);
-        fr[half_flush] &= (!f[full_flush] && !f[big_four_winds] && !f[little_four_winds]);
+        fr[full_flush] &= !f[nine_gates];
+        fr[half_flush] &= (!f[full_flush]);
         fr[two_numbers] &= !f[all_terminals];
         fr[nine_numbers] &= !f[nine_gates];
         fr[reflected_hand] &= !f[nine_gates];
-        fr[mixed_double_triplet] *= (!f[mixed_triple_triplet] && !f[two_numbers]);
+        fr[mixed_double_triplet] *= (!f[mixed_triple_triplet]);
         fr[mixed_double_sequence] *= (!f[mixed_triple_sequence] && !f[mirrored_short_straights]);
         fr[three_shifted_triplets] &= !f[four_shifted_triplets];
         fr[three_shifted_sequences] &= !f[four_shifted_sequences];
@@ -990,10 +987,7 @@ namespace momochai_lingque {
         fr[mirrored_hand] &= !f[mirrored_short_straights];
         fr[pure_straight] &= !f[nine_gates];
         fr[mixed_chained_sequences] &= !f[mixed_shifted_sequences];
-        fr[seven_pairs] &= (!f[big_seven_honours] && !f[seven_shifted_pairs]);
-        fr[four_wind_pairs] &= !f[big_seven_honours];
-        fr[three_dragon_pairs] &= !f[big_seven_honours];
-        fr[reflected_pairs] &= !f[seven_shifted_pairs];
+        fr[two_suits] &= (!f[quadruple_sequence] && !f[four_shifted_sequences] && !f[four_chained_sequences] && !f[four_shifted_triplets]);
         return fr;
     }
 
@@ -1099,7 +1093,7 @@ j1:     if (fan_results[concealed_hand]) ++multiplier;
         if (fan_results[concealed_hand][0]) ss << std::string(34, '-') << '\n' << extend("门清跳翻", 23) << " + 1" << '\n';
         ss << std::string(34, '=') << '\n';
         ss << extend("总计", 20) << extend(std::to_string(res_bp), -3) << " × " << (int)res_mult << " = " << extend(std::to_string(res_bp * res_mult), -4) << '\n';
-        return {true, static_cast<uint16_t>(res_bp * res_mult), ss.str()};
+        return {true, static_cast<uint16_t>(res_bp * res_mult), ss.str(), fans};
     };
 
     const scorer calculator(list_of_fans, score_from_fans, is_winning_hand);

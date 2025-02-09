@@ -41,13 +41,13 @@ int main() {
 #ifdef _WIN32
     setlocale(LC_ALL, "zh_CN.UTF-8");
 #endif
-    std::cout << "[灵雀 第 28 版 计算器]\n\n";
+    std::cout << "[灵雀 第 29 版 计算器]\n\n";
     std::cout << "牌张：123456789m/p/s, ESWNCFP\n";
     std::cout << "门风:  ! - 東,    @ - 南,    # - 西,    $ - 北\n";
     std::cout << "和牌:  % - 自摸,  ^ - 岭上开花/抢杠,  & - 海底捞月/河底捞鱼,  * - 天和/地和\n";
     std::cout << "副露: [] - 暗杠, () - 其余\n\n输入的最后一张牌视为和张.\n\n";
-    std::cout << "例: [WWWW](123m)456p789sFF#%^&\n";
-    calculate("[WWWW](123m)456p789sFF#@%^&");
+    std::cout << "例: [WWWW](123m)456p789sFF#%&\n";
+    calculate("[WWWW](123m)456p789sFF#@%&");
     while (calculate());
     return 0;
 }

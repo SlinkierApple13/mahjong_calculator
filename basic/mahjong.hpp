@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <functional>
 #include <sstream>
+#include <bitset>
 
 #define uint64_t unsigned long long
 
